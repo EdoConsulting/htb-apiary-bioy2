@@ -206,8 +206,18 @@ Manage day objects.
 
 + Response 201
 
-### List Days [GET]
+### List Days [GET /days{?limit,page,orderBy,orderType}]
 + Request (application/json)
+    + Parameters
+        + limit: `10` (number, optional) - The number of results to return per page.
+            + Default: `10`
+        + page: `2` (number, optional) - The page of results to return.
+            + Default: `1`
+        + orderBy: `d.name` (string, optional) - The value for sort results.
+            + Default: `d.did`
+        + orderType: `ASC` (string, optional) - The value for sort order (Ascending or Descending).
+            + Default: `ASC`
+
     + Headers
 
             Authorization: Bearer {access_token}
@@ -256,19 +266,18 @@ Manage the Audio stream and ACS components
     + created
     + updated
 
-### List Audio [GET /audio{?limit,page,orderBy,orderType,published}]
-+ Parameters
-    + limit: `10` (number, optional) - The number of results to return per page.
-        + Default: `10`
-    + page: `2` (number, optional) - The page of results to return.
-        + Default: `1`
-    + orderBy: `d.name` (string, optional) - The value for sort results.
-        + Default: `d.did`
-    + orderType: `ASC` (string, optional) - The value for sort order (Ascending or Descending).
-        + Default: `ASC`
-    + published: `0` (string, optional) - The value to filter published and unpublished Audio.
-
+### List Audio [GET /audio{?limit,page,orderBy,orderType}]
 + Request
+    + Parameters
+        + limit: `10` (number, optional) - The number of results to return per page.
+            + Default: `10`
+        + page: `2` (number, optional) - The page of results to return.
+            + Default: `1`
+        + orderBy: `d.name` (string, optional) - The value for sort results.
+            + Default: `d.did`
+        + orderType: `ASC` (string, optional) - The value for sort order (Ascending or Descending).
+            + Default: `ASC`
+    
 
     + Headers
 
