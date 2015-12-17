@@ -332,8 +332,7 @@ Display translations allocated for daily commentaries
 
 + Attributes
     + default (Commentary)
-    + translations (array)
-        + (Translation)
+    + translations (Commentary Translations)
 
 ### List Translations [GET /translations{?limit,page,orderBy,orderType}]
 + Request
@@ -367,7 +366,7 @@ Create translation for daily commentary.
     + Attributes (object)
         + cid: 1234 (number, required) - commentary ID
         + locale: fr (string, required) - locale for this translation
-        + Include CommentaryTranslations
+        + Include Commentary Translations
 
 + Response 201 (application/json)
 
@@ -393,7 +392,7 @@ Update translation for daily commentary.
 
              Authorization: Bearer {access_token}
 
-    + Attributes (CommentaryTranslations)
+    + Attributes (Commentary Translations)
 
 + Response 200 (application/json)
     + Attributes (Translations)
@@ -411,6 +410,7 @@ Manage the user access & groups
         
 
 ### List Users [GET]
++ Response 200
 
 # Group Languages
 
@@ -1161,6 +1161,10 @@ Fetch all reading statuses of a user
     + realday - The real day number.
     + teaser - the short teaser text for each commentary.
     
+## Commentary Translations (object)
+    + psalms_text (Translation)
+    + proverbs_text (Translation)
+
 ## Translation (object)
     + id (number) - translation ID
     + locale: en (string) - language locale for which this is valid
@@ -1168,10 +1172,6 @@ Fetch all reading statuses of a user
     + content (string) - translated content
     + approved: true (boolean) - approved or not
     
-## CommentaryTranslations (object)
-    + *psalms_text (Translation) - translation keyed by field name
-    + *proverbs_text (Translation) - translation keyed by field name
-
 ## Pager (object)
     + totalItems (number) - total number of items
     + totalPages (number) - total number of pages
