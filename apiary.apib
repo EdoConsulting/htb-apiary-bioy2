@@ -179,6 +179,7 @@ Administer the Commentaries held on the Bible in One Year.
 
 + Response 204
 
+# Group Days functions
 
 ## Day [/days]
 
@@ -478,32 +479,79 @@ Manage the user access & groups
 
 Manage the Language codes on the system
 
-### Create a Language [POST]
+## Language [/languages]
 
-### List Languages [GET]
+Manage language objects.
++ Attributes
+  + id (number) - language ID
+  + iso (string) - ISO code
+  + locale (string) - locale identifier
+  + label (string) - label
+  + created
+  + updated
+  + deleted
 
-### Read language [GET]
-
-### Update Language [PUT]
-
-### Delete Language [DELETE]
-
-+ Parameters
-    + id (required, integer, `42`) ... Unique ID of the commentary
-
-+ Request
+### Create Language [POST]
++ Request (application/json)
 
     + Headers
 
             Authorization: Bearer {access_token}
 
-+ Response 204 (text/html; charset=UTF-8)
+    + Attributes (Language)
+
++ Response 201
+
+### List Languages [GET /languages{?limit,page,orderBy,orderType}]
++ Request (application/json)
+    + Parameters
+        + limit: `10` (number, optional) - The number of results to return per page.
+            + Default: `10`
+        + page: `2` (number, optional) - The page of results to return.
+            + Default: `1`
+        + orderBy: `d.name` (string, optional) - The value for sort results.
+            + Default: `d.did`
+        + orderType: `ASC` (string, optional) - The value for sort order (Ascending or Descending).
+            + Default: `ASC`
 
     + Headers
 
-            Accept: application/json
+            Authorization: Bearer {access_token}
 
-# Search
++ Response 200 (application/json)
+    + Attributes (object)
+        + body (array)
+            + (Language)
+        + pager (Pager)
+
+### Get Language [GET /languages/{id}]
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer {access_token}
+
++ Response 200
+    + Attributes (Language)
+
+### Update Language [PUT /languages/{id}]
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer {access_token}
+
+    + Attributes (Language)
+
++ Response 200
+
+### Delete Language [DELETE /languages/{id}]
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer {access_token}
++ Response 204
+            
+
+# Group Search
 
 Supports search functions from mobile
 
