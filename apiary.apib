@@ -74,11 +74,7 @@ Read multiple complete commentary objects in batched between two dates.  A comme
         + (object)
             + Include Commentary
 
-# Group CRUD Functions
-
-**Authentication**
-
-You will need to use a user's access token when making requests to any non-public endpoint.
+# Group Commentary functions
 
 ## Commentary [/commentaries]
 
@@ -371,7 +367,7 @@ Create translation for daily commentary.
     + Attributes (object)
         + cid: 1234 (number, required) - commentary ID
         + locale: fr (string, required) - locale for this translation
-        + Include Translation
+        + Include CommentaryTranslations
 
 + Response 201 (application/json)
 
@@ -391,172 +387,30 @@ Update translation for daily commentary.
     + cid: 1234 (number, required) - Commentary ID
     + translationId: `1008` (number, required) - The value of translations Id.
 
-+ Request
++ Request (application/json)
 
     + Headers
 
              Authorization: Bearer {access_token}
-             
-    + Body
-    
-            {
-                "commentary": "1008",
-                "language": "zh",
-                "locale": "zh",
-                "status": "ready",
-                "translations": {
-                    "introduction": {
-                        "id": 100,
-                        "content": "<p>translation content for introduction</p>",
-                        "translated": true
-                        
-                    },
-                    "newTestament": {
-                        "id": 102, 
-                        "content": "<p>translation content for newTestament",
-                        "translated": true
-                    },
-                    "oldTestament": {
-                        "id": 103,
-                        "content": "<p>translation content for oldTestament</p>",
-                        "translated": true
-                    },
-                    "pippaAdds": {
-                        "id": 104,
-                        "content": "<p>translation content for pippaAdds</p>",
-                        "translated": true
-                    },
-                    "psalmProverbs": {
-                        "id": 101,
-                        "content": "<p>translation content for psalmProverbs</p>",
-                        "translated": true
-                    },
-                    "reference": {
-                        "id": 105,
-                        "content": "<p>translation content for reference</p>",
-                        "translated": true
-                    },
-                    "title": {
-                        "id": 99,
-                        "content": "<p>translation content for title</p>",
-                        "translated": true
-                    }
-                }
-            }
+
+    + Attributes (CommentaryTranslations)
 
 + Response 200 (application/json)
-
-    + Headers
-
-            Accept: application/json
-
-    + Body
-    
-            {
-              "id": 14,
-              "commentary": {
-                    "did": 258,
-                    "scheduled_for": null,
-                    "audio_path": null,
-                    "day_info": "Psalm 107:23-32, Galatians 2:1-10, Isaiah 36:1-37:38",
-                    "cid": 1008,
-                    "title": "How to Respond to a Crisis",
-                    "introduction": "<p>President J.F. Kennedy once remarked that &lsquo;when written in Chinese, the word &ldquo;crisis&rdquo; is composed of two characters. One represents danger, and the other represents opportunity.&rsquo; Every crisis is, at the same time, an opportunity.</p>\r\n\r\n<p>All of us have problems. Many of us will face crises. How do we respond to a time of trouble, danger or great difficulty? What do we do about a crisis in our personal lives? How do we respond to a crisis in the church or in our nation? What do we do when we are &lsquo;at [our] wits&rsquo; end&rsquo;? (Psalm 107:27). What do we do when the &lsquo;truth of the gospel&rsquo; is at stake? (Galatians 2:5). How do we respond to &lsquo;a black day&rsquo; in our lives? (Isaiah 37:3, MSG).</p>\r\n",
-                    "psalm_proverbs": "<h2>1. Cry out to the Lord in prayer</h2>\r\n\r\n<p>There may be times in your life when you face major storms. A &lsquo;tempest&rsquo; seems to blow and the waves are &lsquo;lifted high&rsquo; (v.25). Your courage melts away (v.26b) and you reach your wits&rsquo; end (vv.26&ndash;27). You hit a crisis and cannot work out how to get out of it.</p>\r\n\r\n<p>This psalm tells us how to respond. The people:<br />\r\n&lsquo;called out to God in [their] desperate condition;<br />\r\n&nbsp;&nbsp; he got [them] out in the nick of time.<br />\r\nHe quieted the wind down to a whisper,<br />\r\n&nbsp;&nbsp; put a muzzle on all the big waves<br />\r\nAnd [they] were so glad when the storm died down,<br />\r\n&nbsp;&nbsp; and he led [them] safely back to harbour&rsquo; (vv.28&ndash;30, MSG).</p>\r\n\r\n<p>When God answers your cry for help don&rsquo;t forget to thank him:<br />\r\n&lsquo;So thank God for his marvellous love,<br />\r\n&nbsp;&nbsp; for his miracle mercy to the children he loves.<br />\r\nLift high your praises when the people assemble,<br />\r\n&nbsp;&nbsp; shout Hallelujah when the elders meet!&rsquo; (vv.31&ndash;32, MSG).</p>\r\n\r\n<blockquote>\r\n<p>Lord, thank you for the many times you have heard me and rescued me when I cried out to you in my distress. Lord, I cry out to you today for help in my own life &hellip; I cry out to you for the church in this country, for our nation, and for our world.</p>\r\n</blockquote>\r\n",
-                    "new_testament": "<h2>2. Use skill, diplomacy and courage</h2>\r\n\r\n<p>As we saw yesterday, sometimes we may be tempted to look down on other parts of the church, other denominations or other Christians and wish they were more like us! If only they did things more like us they would be &lsquo;proper&rsquo; Christians or &lsquo;better&rsquo; Christians! In thinking like this we are, in effect, denying that faith in Jesus is enough.</p>\r\n\r\n<p>This is what was happening to the churches in Galatia. They were being told that their faith in Jesus was not enough. If they wanted to be &lsquo;real&rsquo; Christians, they needed to be circumcised.</p>\r\n\r\n<p>The early church was facing a potential crisis, and the apostle Paul had to use every ounce of his skill, diplomacy and courage to avoid a damaging division and split in the church.</p>\r\n\r\n<p>Paul wants to make clear that he acted under the guidance and activity of the Holy Spirit: &lsquo;I went in response to a revelation&rsquo; (v.2). Paul was convinced of the validity of the gospel he preached, but was also concerned for unity: &lsquo;I did this in private with the leaders &hellip; so that our concern would <em>not become a controversial public issue</em>&rsquo; (v.2, MSG).</p>\r\n\r\n<p>He took with him two friends: Barnabas and Titus. Barnabas was a Jew and Titus was a Greek (an uncircumcised Gentile). For a first-century Jew there were two kinds of people in the world: Jewish and Greek (circumcised and uncircumcised). Circumcision was a sign that marked out a Jew, in accordance with God&rsquo;s command in Genesis 17:9&ndash;14. It signified God&rsquo;s covenant with his chosen people.</p>\r\n\r\n<p>Yet, Paul chose Titus as one of his companions. &lsquo;Significantly, Titus, non-Jewish though he was, was not required to be circumcised&rsquo; (Galatians 2:3, MSG). Paul&rsquo;s point in the section that follows is that the Jerusalem apostles (James, Peter and John) agreed that the good news of Jesus Christ was for everyone: Jew and Gentile, circumcised and uncircumcised.</p>\r\n\r\n<p>Paul was forced to defend the &lsquo;freedom we have in Christ Jesus&rsquo; (v.4). True freedom is only found through faith in Christ. The necessity of circumcision for justification before God would &lsquo;make us slaves&rsquo; (v.4).</p>\r\n\r\n<p>If they had yielded to the demands for circumcision of Gentile converts, they would have denied the very essence of the gospel. The purpose of this letter was to explain &lsquo;the <em>truth </em>of the gospel&rsquo; (v.5). Paul wanted to demonstrate that Jesus&rsquo; life, death and resurrection had fulfilled <em>all </em>the requirements of the law of Moses.</p>\r\n\r\n<p>The meeting in Jerusalem was to resolve the circumcision question. The ruling reached was one of the most important ever made in the history of Christianity. The decision here prevented a ruinous division within the church.</p>\r\n\r\n<p>Not only was the issue resolved, but also the gospel preached by Peter and Paul was firmly established as being <em>one and the same </em>(v.6). The leaders in Jerusalem recognised that Paul&rsquo;s apostleship bore all the marks of God-given authority.</p>\r\n\r\n<p>Peter and the others accepted Paul and agreed a division of responsibility &ndash; Paul for the non-Jews and Peter for the Jews. The same gospel would be brought to two different spheres by different people. They shook hands on it as a sign that the agreement would be honoured (vv.7&ndash;9). This was a monumental moment for the early church.</p>\r\n\r\n<p>It is important to note that the parties had a sensible and detailed discussion about their differences. Paul refused to be overawed, although those he met were &lsquo;reputed to be pillars&rsquo; (v.9). This was, after all, quite a group to take on! James had presumably already become leader of the Jerusalem church. Peter and John were both members of Jesus&rsquo; inner circle.</p>\r\n\r\n<p>A pleasing agreement was reached. Paul seems to have acted with respect and courtesy despite being a determined man conscious of a special task. He would not allow opposition from without, nor discouragement from within, to stop him from doing what he felt called to do.</p>\r\n\r\n<p>The only condition that the Jerusalem leaders stipulated caused no problem for Paul: &lsquo;to remember the poor&rsquo; (v.10). The church must always prioritise the poor and disadvantaged in society.</p>\r\n\r\n<blockquote>\r\n<p>Lord, as the church faces theological debates and a potential crisis of disunity, give us the skill, diplomacy and courage that the apostle Paul had. Help us to recognise that different people have different callings and different roles to play. Help us, like Paul, to embrace the entire church of Jesus Christ, and not add our own ideas and human requirements to what is needed to be a Christian.</p>\r\n</blockquote>\r\n",
-                    "old_testament": "<h2>3. Bring to the Lord the &lsquo;impossible&rsquo; situation</h2>\r\n\r\n<p>Have you ever been taunted or mocked for your faith in God? &lsquo;Do you really think that God is with you?&rsquo; they say. &lsquo;Isn&rsquo;t it just your imaginary friend?&rsquo;; &lsquo;Do you really think that trusting in God is going to do you any good?&rsquo; This is the way God&rsquo;s people have been taunted throughout history.</p>\r\n\r\n<p>Israel faced a crisis that seemed an impossible situation. This is such an important incident in Israel&rsquo;s history that it appears three times in the Bible (see 2 Kings 18, 2 Chronicles 32). Sennacherib, King of Assyria, was attacking Jerusalem with a huge army. His minions were <em>taunting </em>the people, &lsquo;On what are you basing this confidence of yours?&rsquo; (Isaiah 36:4). They were being taunted and ridiculed for their faith in God.</p>\r\n\r\n<p>It must have been a terrifying situation. They were facing having to eat their own excrement and drink their own urine (v.12). They were told their God could not deliver them (v.15). No one else had ever been delivered out of the &lsquo;hand of the king of Assyria&rsquo; (v.18).</p>\r\n\r\n<p>King Hezekiah responded to the crisis by tearing his clothes, putting on sackcloth and going into the temple of the Lord (37:1). He sent for the prophet Isaiah. Hezekiah said, &lsquo;This is a black day. We&rsquo;re <em>in crisis</em>&rsquo; (v.3, MSG). Hezekiah asked Isaiah to pray (v.4).</p>\r\n\r\n<p>Isaiah responded by saying that God&rsquo;s message was: &lsquo;Don&rsquo;t be upset by what you&rsquo;ve heard ... I personally will take care of him&rsquo; (vv.6&ndash;7, MSG).</p>\r\n\r\n<p>When Hezekiah received a threatening letter, he went up to the house of the Lord, <em>spread it out before the Lord </em>and prayed: &lsquo;O Lord Almighty &hellip; you alone are God over all the kingdoms of the earth. You have made heaven and earth. Give ear, O Lord, and hear; open your eyes, O Lord and see; listen to all the words Sennacherib has sent to insult the living God &hellip; Now, O Lord our God, deliver us from his hand, so that all kingdoms on earth may know that you alone, O Lord, are God&rsquo; (vv.14&ndash;20).</p>\r\n\r\n<p>Isaiah sent him a message, &lsquo;This is what the Lord, the God of Israel, says: <em>Because you have prayed to me </em>&hellip; I will defend this city and save it, for my sake and for the sake of David my servant!&rsquo; (vv.21,35)</p>\r\n\r\n<p>God heard the prayer of Hezekiah and Isaiah and he rescued and delivered his people (vv.36&ndash;38).</p>\r\n\r\n<blockquote>\r\n<p>Lord, we face a real crisis in our culture, our nation and our world. The name of Jesus is no longer honoured in our society. Lord, would you pour out a spirit of prayer and supplication on your people so that we may turn to you in prayer. Lord, hear our prayer and deliver us in this time of crisis.</p>\r\n</blockquote>\r\n",
-                    "pippa_adds": "<p><strong>Galatians 2:10</strong></p>\r\n\r\n<p>&lsquo;All they asked was that we should continue to remember the poor, the very thing I was eager to do.&rsquo;</p>\r\n\r\n<p>I am eager to remember the poor too, but occasionally I feel too overwhelmed, or too preoccupied or disillusioned by someone taking me for a ride. I need not to be put off, but to keep remembering.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h6>Notes:</h6>\r\n\r\n<h6>Unless otherwise stated, Scripture quotations taken from the Holy Bible, New International Version Anglicised, Copyright &copy; 1979, 1984, 2011 Biblica, formerly International Bible Society. Used by permission of Hodder &amp; Stoughton Publishers, an Hachette UK company. All rights reserved. &lsquo;NIV&rsquo; is a registered trademark of Biblica. UK trademark number 1448790.</h6>\r\n\r\n<h6>Scripture quotations marked (AMP) taken from the Amplified&reg; Bible, Copyright &copy; 1954, 1958, 1962, 1964, 1965, 1987 by The Lockman Foundation. Used by permission. (www.Lockman.org)</h6>\r\n\r\n<h6>Scripture marked (MSG) taken from The Message. Copyright &copy; 1993, 1994, 1995, 1996, 2000, 2001, 2002. Used by permission of NavPress Publishing Group.&nbsp;</h6>\r\n",
-                    "reference": null,
-                    "updated": "2015-10-15 07:04:37",
-                    "show_twitter": false,
-                    "cartoon_key": "",
-                    "language": "en",
-                    "document_path": null,
-                    "realday": "2015-09-14",
-                    "status": "ready"
-              },
-              "status": "ready",
-              "published": false,
-              "language": "zh",
-              "locale": "zh",
-              "commentary_translations": [
-                {
-                    "id": 92,
-                    "locale": "en",
-                    "field": "title",
-                    "object": null,
-                    "content": "Translation content for Title",
-                    "translated": false,
-                    "approved": false,
-                    "language": "zh"
-                },
-                {
-                    "id": 93,
-                    "locale": "en",
-                    "field": "introduction",
-                    "object": null,
-                    "content": "<p>Translation content for <strong>Introduction</strong></p>\n",
-                    "translated": false,
-                    "approved": false,
-                    "language": "zh"
-                },
-                {
-                    "id": 94,
-                    "locale": "en",
-                    "field": "psalm_proverbs",
-                    "object": null,
-                    "content": "<p>Translation content for&nbsp;<strong>Psalm / Proverbs</strong></p>\n",
-                    "translated": false,
-                    "approved": false,
-                    "language": "zh"
-                },
-                {
-                    "id": 95,
-                    "locale": "en",
-                    "field": "new_testament",
-                    "object": null,
-                    "content": "<p>Translation content for&nbsp;<strong>New Testament</strong></p>\n",
-                    "translated": false,
-                    "approved": false,
-                    "language": "zh"
-                },
-                {
-                    "id": 96,
-                    "locale": "en",
-                    "field": "old_testament",
-                    "object": null,
-                    "content": "<p>Translation content for&nbsp;<strong>Old Testament</strong></p>\n",
-                    "translated": false,
-                    "approved": false,
-                    "language": "zh"
-                },
-                {
-                    "id": 97,
-                    "locale": "en",
-                    "field": "pippa_adds",
-                    "object": null,
-                    "content": "<p>Translation content for&nbsp;<strong>Pippa Adds</strong></p>\n",
-                    "translated": true,
-                    "approved": false,
-                    "language": "zh"
-                },
-                {
-                    "id": 98,
-                    "locale": "en",
-                    "field": "reference",
-                    "object": null,
-                    "content": "<p>Translation content for&nbsp;<strong>References</strong></p>\n",
-                    "translated": true,
-                    "approved": false,
-                    "language": "zh"
-                }
-              ]
-            }
+    + Attributes (Translations)
     
 
 # Group Users
 
 Manage the user access & groups
+
+## User [/users]
++ Attributes (object)
+    + id (number) - the user ID
+    + email: example@example.com (string) - email address
+    + languages (array)
+        
+
+### List Users [GET]
 
 # Group Languages
 
@@ -1313,6 +1167,10 @@ Fetch all reading statuses of a user
     + field: psalms_text (string) - field for which this is a translation
     + content (string) - translated content
     + approved: true (boolean) - approved or not
+    
+## CommentaryTranslations (object)
+    + *psalms_text (Translation) - translation keyed by field name
+    + *proverbs_text (Translation) - translation keyed by field name
 
 ## Pager (object)
     + totalItems (number) - total number of items
