@@ -291,55 +291,18 @@ Approve and Publish audio that have been allocated for a daily commentary.
             
             Authorization: Bearer {access_token}    
 
-    + Body
-    
-            {
-                "status": "approved",
-                "published": true
-            }
-            
+    + Attributes (object)
+        + status: approved (string)
+        + published: true (boolean)
+
 + Response 200 (application/json)
 
     + Headers
     
             Accept: application/json
             
-    + Body
+    + Attributes (Audio)
 
-            {
-                "id": 23,
-                "name": "Test, Audio.mp3",
-                "filename": "audio627ce201-5f75-464e-8116-928a551f2b69.mp3",
-                "url": "http://files.develop.alpha.org.s3.amazonaws.com//audio627ce201-5f75-464e-8116-928a551f2b69.mp3",
-                "owner": 44,
-                "status": "approved",
-                "published": true,
-                "comment": null,
-                "deleted": null,
-                "created": "2015-10-09 11:31:03",
-                "updated": "2015-10-13 09:07:44",
-                "commentary": {
-                    "did": 10,
-                    "scheduled_for": null,
-                    "audio_path": "http://files.develop.alpha.org.s3.amazonaws.com//audio627ce201-5f75-464e-8116-928a551f2b69.mp3",
-                    "day_info": "Psalm 7:10-17, test, Matthew 8:23-9:13, Genesis 21:1-23:20",
-                    "cid": 1494,
-                    "title": "Test wf 2",
-                    "introduction": null,
-                    "psalm_proverbs": null,
-                    "new_testament": null,
-                    "old_testament": null,
-                    "pippa_adds": null,
-                    "reference": null,
-                    "updated": "2015-10-09 11:31:03",
-                    "show_twitter": false,
-                    "cartoon_key": null,
-                    "language": "en",
-                    "document_path": "http://files.develop.alpha.org.s3.amazonaws.com/documents/6f88e3c5-eab5-48d1-8a05-ad9e37c451d6.html",
-                    "realday": "2016-01-09",
-                    "status": null
-                }
-            }
 
 ## Needs Revision [/audio/{audioId}]
 Reject audio that have been allocated for a daily commentary.
@@ -355,379 +318,60 @@ Reject audio that have been allocated for a daily commentary.
             
             Authorization: Bearer {access_token}    
 
-    + Body
-    
-            {
-                "comment" : "comments",
-                "email" : "test@gmail.com",
-                "status" : "rejected"
-            }
-            
+    + Attributes (object)
+        + comment: comments (string) - reasons for rejection
+        + email: test@gmail.com (string) - email address
+        + status: rejected (string) - rejection status
+
 + Response 200 (application/json)
-
-    + Headers
-    
-            Accept: application/json
-            
-    + Body
-
-            {
-                "id": 23,
-                "name": "Test, Audio.mp3",
-                "filename": "audio627ce201-5f75-464e-8116-928a551f2b69.mp3",
-                "url": "http://files.develop.alpha.org.s3.amazonaws.com//audio627ce201-5f75-464e-8116-928a551f2b69.mp3",
-                "owner": 44,
-                "status": "rejected",
-                "published": false,
-                "comment": "comments",
-                "deleted": null,
-                "created": "2015-10-09 11:31:03",
-                "updated": "2015-10-13 09:07:44",
-                "commentary": {
-                    "did": 10,
-                    "scheduled_for": null,
-                    "audio_path": "http://files.develop.alpha.org.s3.amazonaws.com//audio627ce201-5f75-464e-8116-928a551f2b69.mp3",
-                    "day_info": "Psalm 7:10-17, test, Matthew 8:23-9:13, Genesis 21:1-23:20",
-                    "cid": 1494,
-                    "title": "Test wf 2",
-                    "introduction": null,
-                    "psalm_proverbs": null,
-                    "new_testament": null,
-                    "old_testament": null,
-                    "pippa_adds": null,
-                    "reference": null,
-                    "updated": "2015-10-09 11:31:03",
-                    "show_twitter": false,
-                    "cartoon_key": null,
-                    "language": "en",
-                    "document_path": "http://files.develop.alpha.org.s3.amazonaws.com/documents/6f88e3c5-eab5-48d1-8a05-ad9e37c451d6.html",
-                    "realday": "2016-01-09",
-                    "status": null
-                }
-            }
-
-
+    + Attributes (Audio)
 
 
 # Group Translation
 
 Manage the Daily Commentaries Translations
 
-## List of Translations [/translations{?limit,page,orderBy,orderType}]
-
+## Translations [/translations]
 Display translations allocated for daily commentaries
 
-### List of Translations [GET]
++ Attributes
+    + default (Commentary)
+    + translations (array)
+        + (Translation)
 
-+ Parameters
-    + limit: `10` (number, optional) - The number of results to return per page.
-        + Default: `10`
-    + page: `2` (number, optional) - The page of results to return.
-        + Default: `1`
-    + orderBy: `d.did` (string, optional) - The value to sort results.
-        + Default: `d.did`
-    + orderType: `ASC` (string, optional) - The value to sort order (Ascending or Descending).
-        + Default: `ASC`
-        
+### List Translations [GET /translations{?limit,page,orderBy,orderType}]
 + Request
+    + Parameters
+        + limit: `10` (number, optional) - The number of results to return per page.
+            + Default: `10`
+        + page: `2` (number, optional) - The page of results to return.
+            + Default: `1`
+        + orderBy: `d.did` (string, optional) - The value to sort results.
+            + Default: `d.did`
+        + orderType: `ASC` (string, optional) - The value to sort order (Ascending or Descending).
+            + Default: `ASC`
 
     + Headers
 
              Authorization: Bearer {access_token}
 
 + Response 200 (application/json)
+    + Attributes (Translations)
 
-    + Headers
-
-            Accept: application/json
-
-    + Body
-
-            {
-              "body": [
-                {
-                  "id": 14,
-                  "commentary": {
-                    "did": null,
-                    "scheduled_for": null,
-                    "audio_path": null,
-                    "day_info": null,
-                    "cid": 63,
-                    "title": "Happy Leap Year!",
-                    "introduction": "<p>I wanted to write a brief note to encourage all of you taking part in the <em>Bible in One Year</em> challenge to keep going.&nbsp; Rick Warren has written that &lsquo;reading the Bible generates life, it produces change, it heals hurts, it builds character, it transforms circumstances, it imparts joy, it overcomes adversity, it defeats temptation, it infuses hope, it releases power, it cleanses the mind&rsquo;.&nbsp; I hope and pray that reading the <em>Bible in One Year</em> brings much benefit to your life, just as it has done to mine.</p>\r\n",
-                    "psalm_proverbs": "<h2>1.&nbsp; Keep delighting and meditating on God&rsquo;s words</h2>\r\n\r\n<p>&lsquo;Blessed is the one<br />\r\n&nbsp;&nbsp; who does not walk in step with the wicked<br />\r\nor stand in the way that sinners take<br />\r\n&nbsp;&nbsp; or sit in the company of mockers,<br />\r\nbut whose delight is in the law of the Lord,<br />\r\n&nbsp;&nbsp; and who meditates on his law day and night.<br />\r\nThat person is like a tree planted by streams of water,<br />\r\n&nbsp;&nbsp; which yields its fruit in season<br />\r\nand whose leaf does not wither &ndash;<br />\r\n&nbsp;&nbsp; whatever they do prospers&rsquo; (Psalm 1:1&ndash;3)</p>\r\n",
-                    "new_testament": "<h2>2.&nbsp; Keep focused on Jesus as you read</h2>\r\n\r\n<p>&lsquo;You study the Scriptures diligently because you think that in them you have eternal life.&nbsp; These are the very Scriptures that testify about me&rsquo; (John 5:39).</p>\r\n",
-                    "old_testament": "<h2>3. Keep putting God&rsquo;s word into practice</h2>\r\n\r\n<p>&lsquo;Now, Israel, hear the decrees and laws I am about to teach you.&nbsp; Follow them so that you may live and may go in and take possession of the land the Lord, the God of your ancestors, is giving you.&nbsp; Do not add to what I command you and do not subtract from it, but keep the commands of the Lord your God that I give you&rsquo; (Deuteronomy 4:1&ndash;2).</p>\r\n",
-                    "pippa_adds": "<p>Hurray!&nbsp; A day off!</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h6>Notes:</h6>\r\n\r\n<h6>Unless otherwise stated, Scripture quotations taken from the Holy Bible, New International Version Anglicised, Copyright &copy; 1979, 1984, 2011 Biblica, formerly International Bible Society. Used by permission of Hodder &amp; Stoughton Publishers, an Hachette UK company. All rights reserved. &lsquo;NIV&rsquo; is a registered trademark of Biblica. UK trademark number 1448790.</h6>\r\n\r\n<h6>Scripture quotations marked (AMP) taken from the Amplified&reg; Bible, Copyright &copy; 1954, 1958, 1962, 1964, 1965, 1987 by The Lockman Foundation. Used by permission. (www.Lockman.org)</h6>\r\n\r\n<h6>Scripture marked (MSG) taken from The Message. Copyright &copy; 1993, 1994, 1995, 1996, 2000, 2001, 2002. Used by permission of NavPress Publishing Group.&nbsp;</h6>\r\n",
-                    "reference": null,
-                    "updated": "2015-10-13 13:28:15",
-                    "show_twitter": false,
-                    "cartoon_key": "",
-                    "language": "en",
-                    "document_path": null,
-                    "realday": "2015-03-03",
-                    "status": null
-                  },
-                  "status": "in_progress",
-                  "published": false,
-                  "language": "zh",
-                  "locale": "en",
-                  "commentary_translations": [
-                    {
-                      "id": 92,
-                      "locale": "en",
-                      "field": "title",
-                      "object": null,
-                      "content": "Translation content for Title",
-                      "translated": false,
-                      "approved": false,
-                      "language": "zh"
-                    },
-                    {
-                      "id": 93,
-                      "locale": "en",
-                      "field": "introduction",
-                      "object": null,
-                      "content": "<p>Translation content for <strong>Introduction</strong></p>\n",
-                      "translated": false,
-                      "approved": false,
-                      "language": "zh"
-                    },
-                    {
-                      "id": 94,
-                      "locale": "en",
-                      "field": "psalm_proverbs",
-                      "object": null,
-                      "content": "<p>Translation content for&nbsp;<strong>Psalm / Proverbs</strong></p>\n",
-                      "translated": false,
-                      "approved": false,
-                      "language": "zh"
-                    },
-                    {
-                      "id": 95,
-                      "locale": "en",
-                      "field": "new_testament",
-                      "object": null,
-                      "content": "<p>Translation content for&nbsp;<strong>New Testament</strong></p>\n",
-                      "translated": false,
-                      "approved": false,
-                      "language": "zh"
-                    },
-                    {
-                      "id": 96,
-                      "locale": "en",
-                      "field": "old_testament",
-                      "object": null,
-                      "content": "<p>Translation content for&nbsp;<strong>Old Testament</strong></p>\n",
-                      "translated": false,
-                      "approved": false,
-                      "language": "zh"
-                    },
-                    {
-                      "id": 97,
-                      "locale": "en",
-                      "field": "pippa_adds",
-                      "object": null,
-                      "content": "<p>Translation content for&nbsp;<strong>Pippa Adds</strong></p>\n",
-                      "translated": true,
-                      "approved": false,
-                      "language": "zh"
-                    },
-                    {
-                      "id": 98,
-                      "locale": "en",
-                      "field": "reference",
-                      "object": null,
-                      "content": "<p>Translation content for&nbsp;<strong>References</strong></p>\n",
-                      "translated": true,
-                      "approved": false,
-                      "language": "zh"
-                    }
-                  ]
-                }
-              ],
-              "pager": {
-                "totalItems": 1,
-                "totalPages": 1,
-                "currentPage": 1
-              }
-            }
-            
-## Read a single translation [/translations/{id}]
-
-Return a single translation object including the default daily commentary (en).
-
-### Read a single Translation [GET]
-
-+ Parameters
-    + id: `14` (number, required) - The value of translation's Id.
-        
-+ Request
-
-    + Headers
-
-             Authorization: Bearer {access_token}
-
-+ Response 200 (application/json)
-
-    + Headers
-
-            Accept: application/json
-
-    + Body
-
-            {
-              "id": 14,
-              "commentary": {
-                "did": null,
-                "scheduled_for": null,
-                "audio_path": null,
-                "day_info": null,
-                "cid": 63,
-                "title": "Happy Leap Year!",
-                "introduction": "<p>I wanted to write a brief note to encourage all of you taking part in the <em>Bible in One Year</em> challenge to keep going.&nbsp; Rick Warren has written that &lsquo;reading the Bible generates life, it produces change, it heals hurts, it builds character, it transforms circumstances, it imparts joy, it overcomes adversity, it defeats temptation, it infuses hope, it releases power, it cleanses the mind&rsquo;.&nbsp; I hope and pray that reading the <em>Bible in One Year</em> brings much benefit to your life, just as it has done to mine.</p>\r\n",
-                "psalm_proverbs": "<h2>1.&nbsp; Keep delighting and meditating on God&rsquo;s words</h2>\r\n\r\n<p>&lsquo;Blessed is the one<br />\r\n&nbsp;&nbsp; who does not walk in step with the wicked<br />\r\nor stand in the way that sinners take<br />\r\n&nbsp;&nbsp; or sit in the company of mockers,<br />\r\nbut whose delight is in the law of the Lord,<br />\r\n&nbsp;&nbsp; and who meditates on his law day and night.<br />\r\nThat person is like a tree planted by streams of water,<br />\r\n&nbsp;&nbsp; which yields its fruit in season<br />\r\nand whose leaf does not wither &ndash;<br />\r\n&nbsp;&nbsp; whatever they do prospers&rsquo; (Psalm 1:1&ndash;3)</p>\r\n",
-                "new_testament": "<h2>2.&nbsp; Keep focused on Jesus as you read</h2>\r\n\r\n<p>&lsquo;You study the Scriptures diligently because you think that in them you have eternal life.&nbsp; These are the very Scriptures that testify about me&rsquo; (John 5:39).</p>\r\n",
-                "old_testament": "<h2>3. Keep putting God&rsquo;s word into practice</h2>\r\n\r\n<p>&lsquo;Now, Israel, hear the decrees and laws I am about to teach you.&nbsp; Follow them so that you may live and may go in and take possession of the land the Lord, the God of your ancestors, is giving you.&nbsp; Do not add to what I command you and do not subtract from it, but keep the commands of the Lord your God that I give you&rsquo; (Deuteronomy 4:1&ndash;2).</p>\r\n",
-                "pippa_adds": "<p>Hurray!&nbsp; A day off!</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h6>Notes:</h6>\r\n\r\n<h6>Unless otherwise stated, Scripture quotations taken from the Holy Bible, New International Version Anglicised, Copyright &copy; 1979, 1984, 2011 Biblica, formerly International Bible Society. Used by permission of Hodder &amp; Stoughton Publishers, an Hachette UK company. All rights reserved. &lsquo;NIV&rsquo; is a registered trademark of Biblica. UK trademark number 1448790.</h6>\r\n\r\n<h6>Scripture quotations marked (AMP) taken from the Amplified&reg; Bible, Copyright &copy; 1954, 1958, 1962, 1964, 1965, 1987 by The Lockman Foundation. Used by permission. (www.Lockman.org)</h6>\r\n\r\n<h6>Scripture marked (MSG) taken from The Message. Copyright &copy; 1993, 1994, 1995, 1996, 2000, 2001, 2002. Used by permission of NavPress Publishing Group.&nbsp;</h6>\r\n",
-                "reference": null,
-                "updated": "2015-10-13 13:28:15",
-                "show_twitter": false,
-                "cartoon_key": "",
-                "language": "en",
-                "document_path": null,
-                "realday": "2015-03-03",
-                "status": null
-              },
-              "status": "in_progress",
-              "published": false,
-              "language": "zh",
-              "locale": "en",
-              "commentary_translations": [
-                {
-                  "id": 92,
-                  "locale": "en",
-                  "field": "title",
-                  "object": null,
-                  "content": "Translation content for Title",
-                  "translated": false,
-                  "approved": false,
-                  "language": "zh"
-                },
-                {
-                  "id": 93,
-                  "locale": "en",
-                  "field": "introduction",
-                  "object": null,
-                  "content": "<p>Translation content for <strong>Introduction</strong></p>\n",
-                  "translated": false,
-                  "approved": false,
-                  "language": "zh"
-                },
-                {
-                  "id": 94,
-                  "locale": "en",
-                  "field": "psalm_proverbs",
-                  "object": null,
-                  "content": "<p>Translation content for&nbsp;<strong>Psalm / Proverbs</strong></p>\n",
-                  "translated": false,
-                  "approved": false,
-                  "language": "zh"
-                },
-                {
-                  "id": 95,
-                  "locale": "en",
-                  "field": "new_testament",
-                  "object": null,
-                  "content": "<p>Translation content for&nbsp;<strong>New Testament</strong></p>\n",
-                  "translated": false,
-                  "approved": false,
-                  "language": "zh"
-                },
-                {
-                  "id": 96,
-                  "locale": "en",
-                  "field": "old_testament",
-                  "object": null,
-                  "content": "<p>Translation content for&nbsp;<strong>Old Testament</strong></p>\n",
-                  "translated": false,
-                  "approved": false,
-                  "language": "zh"
-                },
-                {
-                  "id": 97,
-                  "locale": "en",
-                  "field": "pippa_adds",
-                  "object": null,
-                  "content": "<p>Translation content for&nbsp;<strong>Pippa Adds</strong></p>\n",
-                  "translated": true,
-                  "approved": false,
-                  "language": "zh"
-                },
-                {
-                  "id": 98,
-                  "locale": "en",
-                  "field": "reference",
-                  "object": null,
-                  "content": "<p>Translation content for&nbsp;<strong>References</strong></p>\n",
-                  "translated": true,
-                  "approved": false,
-                  "language": "zh"
-                }
-              ]
-            }
-            
-## Create Translation [/translations]
-
-Create translation for daily commentary.
 
 ### Create Translation [POST]
+Create translation for daily commentary.
 
-+ Request
++ Request (application/json)
 
     + Headers
 
              Authorization: Bearer {access_token}
              
-    + Body
-    
-            {
-                "commentary": "1009",
-                "language": "gb",
-                "locale": "en",
-                "status": "ready",
-                "translations": {
-                        "introduction": {
-                            "content": "<p>Translation content for <strong>Introduction</strong></p>\n",
-                            "translated": true
-                        },
-                        "newTestament": {
-                            "content": "<p>Translation content for&nbsp;<strong>New Testament</strong></p>\n",
-                            "translated": true
-                        },
-                            
-                        "oldTestament": {
-                            "content": "<p>Translation content for&nbsp;<strong>Old Testament</strong></p>\n",
-                            "translated": true
-                        },
-                        "pippaAdds": {
-                            "content": "<p>test</p>",
-                            "translated": true
-                        },
-                        "psalmProverbs": {
-                            "content": "<p>Translation content for&nbsp;<strong>Psalm / Proverbs</strong></p>\n",
-                            "translated": true
-                        },
-                        "reference": {
-                            "content": "<p>Translation content for&nbsp;<strong>References</strong></p>\n", 
-                            "translated": true
-                        },
-                        "title": {
-                            "content": "Translation content for Title",
-                            "translated": true
-                        }
-                    }
-            }
+    + Attributes (object)
+        + cid: 1234 (number, required) - commentary ID
+        + locale: fr (string, required) - locale for this translation
+        + Include Translation
 
 + Response 201 (application/json)
 
@@ -735,45 +379,16 @@ Create translation for daily commentary.
 
             Accept: application/json
 
-    + Body
-    
-            {
-              "id": 17,
-              "commentary": {
-                "did": 262,
-                "scheduled_for": null,
-                "audio_path": null,
-                "day_info": "Psalm 108:6-13, Galatians 4:21-5:6, Isaiah 44:24-46:13",
-                "cid": 1009,
-                "title": "Cry Freedom",
-                "introduction": "<p>He had no one to help him become a lawyer or a politician. He was not interested in the army. He had no desire to be a doctor. Therefore, the only obvious career move in those days for a man of his background was to become a clergyman in the Church of England.</p>\r\n\r\n<p>He tried to make himself acceptable to God by keeping the whole law, inwardly and outwardly. He got up early. He prayed. He denied himself. He tried to earn forgiveness and peace by increased effort. But he &lsquo;groaned under a heavy yoke&rsquo;.</p>\r\n\r\n<p>On 24 May, 1738 at 8.45am he heard someone reading a book by the great reformer, Martin Luther. He later recalled, &lsquo;While he was describing the change which God works in the heart through faith in Christ, <em>I felt my heart strangely warmed</em>. I felt I did trust in Christ, Christ alone for salvation; and an assurance was given [to] me that He had taken away my sins, even mine, and saved me from the law of sin and death.&rsquo;</p>\r\n\r\n<p>John Wesley became one of the greatest preachers ever, preaching over 40,000 sermons centred on freedom through faith in Jesus Christ. He had, as he put it, &lsquo;<em>exchanged the faith of a servant for the faith of a son</em>&rsquo;.</p>\r\n\r\n<p>Jesus Christ is the supreme liberator, and becoming a Christian is the supreme act of liberation. &lsquo;Freedom&rsquo; is the word that best sums up the Christian life.</p>\r\n",
-                "psalm_proverbs": "<h2>1. Cry out for freedom</h2>\r\n\r\n<p>David knew that God loved him, and he prayed that God would save and help him. &lsquo;Save us and help us with your right hand, that those you love may be delivered&rsquo; (v.6). To be saved is to be <em>set free</em>.</p>\r\n\r\n<p>If you are facing some difficult challenge in your life, pray like David:<br />\r\n&lsquo;Give us help for the hard task;<br />\r\n&nbsp;&nbsp; human help is worthless.<br />\r\nIn God we&rsquo;ll do our very best&rsquo;<br />\r\n(vv.12&ndash;13a, MSG).</p>\r\n\r\n<blockquote>\r\n<p>Lord, thank you that you love me, help me and set me free. Thank you so much for all the ways in which you have helped me in the past. Lord, today I pray for your help with ...</p>\r\n</blockquote>\r\n",
-                "new_testament": "<h2>2. Live a life of freedom</h2>\r\n\r\n<p>According to Paul&rsquo;s teaching in today&rsquo;s passage, freedom comes through Jesus Christ. His message is that we are not &lsquo;born free&rsquo; but that in order to be free, we must be &lsquo;born again&rsquo;. True freedom is found in a life of faith in Christ.</p>\r\n\r\n<p>Many ideas of freedom fail because they do not realise the true nature of our captivity. A belief in freedom as the birthright of a particular group of people has often given birth to malignant nationalism and racism. It has produced some of the gravest evils of recent times, including Nazism and Apartheid.</p>\r\n\r\n<p>The title of the film <em>Cry Freedom </em>expresses something we all long for. Whether it&rsquo;s racial and political freedom (as in the case of this film), free speech, free assembly, free worship, a free conscience, or economic freedom and individual freedom, the whole world cries out for freedom.</p>\r\n\r\n<p>All of these forms of freedom are important, but you can have them all and still be in slavery. Alternatively, you can have none of them but still be free. The gospel contains within it the promise of other forms of freedom, but it begins with a freedom that is more profound than any other.</p>\r\n\r\n<p>&lsquo;Christ has set us free to live a free life&rsquo; (5:1, MSG). Jesus sets us free to live a life of freedom, faith and love through the Spirit. Paul&rsquo;s opponents, &lsquo;the Judaisers&rsquo;, boasted about the fact that they were Abraham&rsquo;s children. Paul used an allegorical argument to confront them. (It is interesting to note in passing that Paul was quite happy to interpret the Old Testament figuratively (4:24).)</p>\r\n\r\n<p>Paul said to his opponents that there are two ways in which we can live &ndash; in bondage or in freedom. He explains that there are two covenants: &lsquo;You boast of being Abraham&rsquo;s children &ndash; but Abraham actually had two children &ndash; one in bondage and one in freedom.&rsquo; True descent from Abraham is not physical, but spiritual. It is not enough to have Abraham as your father. The crucial question is, &lsquo;Who is your mother?&rsquo;</p>\r\n\r\n<p>He argued that by his opponents&rsquo; insistence on the law, they were, in fact, children of Hagar. This analogy represents the old covenant, the present city of Jerusalem, Ishmael, the child of the flesh, and a life of bondage (v.25). This is the life John Wesley experienced before his conversion. It is a life of frustration and failure, confusion and defeat.</p>\r\n\r\n<p>To be a Christian, on the other hand, is to be a child not only of Abraham, but also of Sarah. Sarah represents the new covenant, the new Jerusalem (&lsquo;the Jerusalem that is above&rsquo;, v.26), Isaac (the child of promise, v.28) and the freedom that is in Christ. This is what Wesley experienced the day he trusted in Christ and Christ alone for salvation. His heart was &lsquo;strangely warmed&rsquo;. This is the way of peace, joy and freedom.</p>\r\n\r\n<p>Incidentally, this passage is the origin of Mothering Sunday &ndash; which has morphed into Mother&rsquo;s Day. Paul saw the Jerusalem described above as a representation of the Christian church, as foretold in Isaiah 54:1, and &lsquo;she is our mother&rsquo; (Galatians 4:26), i.e. the church is our mother. (Mothering Sunday was originally a day when Christians celebrated the &ldquo;mother church&rdquo;.)</p>\r\n\r\n<p>Paul pointed out that just as Ishmael ridiculed Isaac (see Genesis 21:9), the Galatians who are &lsquo;born by the power of the Spirit&rsquo; (v.29) should not be surprised that they are being persecuted by these &lsquo;Judaisers&rsquo;.</p>\r\n\r\n<p>He concluded his argument in this section by saying, &lsquo;We are not children of the slave woman, but of the free woman&rsquo; (v.31). He continued, &lsquo;It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery&rsquo; (5:1&ndash;2). The picture is of an ox bowed down with a heavy harness.</p>\r\n\r\n<p>&lsquo;Circumcision&rsquo; was the theological symbol standing for a religion of law (vv.2&ndash;3). Paul argued that to add circumcision is to lose Christ. To seek to be justified by works is to fall away from grace (v.4).</p>\r\n\r\n<p>The Christian life is a life of faith. We do not work for our salvation; we wait for it (v.5). Meanwhile, &lsquo;The only thing that counts is faith expressing itself through love&rsquo; (v.6b).</p>\r\n\r\n<blockquote>\r\n<p>Lord, thank you for setting me free in order that I might live a life of freedom. Thank you for the freedom the Holy Spirit brings to my life. Help me to express my faith in love today.</p>\r\n</blockquote>\r\n",
-                "old_testament": "<h2>3. Tell the good news of freedom</h2>\r\n\r\n<p>God&rsquo;s love extends to every person, of every nation, from the moment of conception onwards. Part of his original plan in choosing Israel was that they would bring his blessing to all people (Genesis 12:3).</p>\r\n\r\n<p>God is the creator of the heavens and the earth. He is our maker. There is no other. The book of Isaiah repeats this over and over again for emphasis. Ten times this passage says, &lsquo;There is no other.&rsquo;</p>\r\n\r\n<p>God is our maker. He &lsquo;formed you in the womb&rsquo; (Isaiah 44:24). God&rsquo;s love extends before birth to conception and the womb; this has profound implications for how we treat the unborn. Every human being from the moment of conception is created and sustained by God. &lsquo;I have upheld [you] <em>since you were conceived</em>&rsquo; (46:3b).</p>\r\n\r\n<p>God&rsquo;s love extends beyond Israel to <em>all the nations </em>as well. Since he is the creator of all, God invites all the nations to participate in salvation and freedom. &lsquo;So turn to me and be helped &ndash; saved! &ndash; everyone, whoever and wherever you are&rsquo; (45:22a, MSG). This promises a freedom greater than any the world can offer.</p>\r\n\r\n<p>Here, we get a glimpse of the entire world bowing before Jesus. &lsquo;Before me every knee will bow; by me every tongue will swear&rsquo; (v.23b). Paul referred to this verse as a reference to Jesus (Philippians 2:9 onwards).</p>\r\n\r\n<p>This was a foretaste too, of the fact that God will use people who are &lsquo;Gentiles&rsquo;, that is, non-Jewish. Cyrus was a Persian and yet he is described here as the Lord&rsquo;s anointed (Isaiah 45:1). Isaiah prophesies, &lsquo;I will raise up Cyrus in my righteousness: I will make all his ways straight. He will rebuild my city and set my exiles <em>free</em>&rsquo; (v.13). This prophecy was fulfilled when the exile came to an end through the hand of Cyrus.</p>\r\n\r\n<p>This was God&rsquo;s plan. He said, &lsquo;My purpose will stand, and I will do all that I please. From the east I summon a bird of prey; from a far-off land, a man <em>to fulfil my purpose</em>. What I have said, that will I bring about; what <em>I have planned, that will I do</em>&#39; (46:10b&ndash;11). You can be confident that nothing can thwart God&rsquo;s plan for you.</p>\r\n\r\n<blockquote>\r\n<p>Lord, thank you that from the moment of conception, you love all people regardless of race or background. Thank you that Jesus has set us free and that, one day, every knee will bow and every tongue will confess that Jesus Christ is Lord.</p>\r\n</blockquote>\r\n",
-                "pippa_adds": "<p><strong>Galatians 5:1</strong></p>\r\n\r\n<p>&lsquo;It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery.&rsquo;</p>\r\n\r\n<p>It is a wonderful truth; Christ does set us free from sins, addictions, fears and bad habits. I know that freedom myself and have seen many others totally transformed by the reality of this verse. We then have to continue to walk in that freedom and not be tempted back into those old habits, but keep claiming Christ&rsquo;s freedom and the power of the cross.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h6>Notes:</h6>\r\n\r\n<h6>Unless otherwise stated, Scripture quotations taken from the Holy Bible, New International Version Anglicised, Copyright &copy; 1979, 1984, 2011 Biblica, formerly International Bible Society. Used by permission of Hodder &amp; Stoughton Publishers, an Hachette UK company. All rights reserved. &lsquo;NIV&rsquo; is a registered trademark of Biblica. UK trademark number 1448790.</h6>\r\n\r\n<h6>Scripture quotations marked (AMP) taken from the Amplified&reg; Bible, Copyright &copy; 1954, 1958, 1962, 1964, 1965, 1987 by The Lockman Foundation. Used by permission. (www.Lockman.org)</h6>\r\n\r\n<h6>Scripture marked (MSG) taken from The Message. Copyright &copy; 1993, 1994, 1995, 1996, 2000, 2001, 2002. Used by permission of NavPress Publishing Group.&nbsp;</h6>\r\n",
-                "reference": null,
-                "updated": "2015-10-15 06:33:38",
-                "show_twitter": false,
-                "cartoon_key": "",
-                "language": "en",
-                "document_path": null,
-                "realday": "2015-09-18",
-                "status": "ready"
-              },
-              "status": "ready",
-              "published": false,
-              "language": "gb",
-              "locale": "en",
-              "commentary_translations": []
-            }
-    
-## Update Translation [/translations/{translationId}]
+    + Attributes (Translations)
+
+## Update Translation [/{cid}/translations/{translationId}]
 
 Update translation for daily commentary.
 
 ### Update Translation [PUT]
 
 + Parameters
+    + cid: 1234 (number, required) - Commentary ID
     + translationId: `1008` (number, required) - The value of translations Id.
 
 + Request
@@ -1691,6 +1306,13 @@ Fetch all reading statuses of a user
     + title - The title for the day.
     + realday - The real day number.
     + teaser - the short teaser text for each commentary.
+    
+## Translation (object)
+    + id (number) - translation ID
+    + locale: en (string) - language locale for which this is valid
+    + field: psalms_text (string) - field for which this is a translation
+    + content (string) - translated content
+    + approved: true (boolean) - approved or not
 
 ## Pager (object)
     + totalItems (number) - total number of items
