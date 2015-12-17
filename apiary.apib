@@ -204,18 +204,27 @@ Manage day objects.
 
     + Attributes (Day)
 
-        
 + Response 201
 
 ### List Days [GET]
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer {access_token}
+
 + Response 200
 
 ### Get Day [GET /days/{id}]
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer {access_token}
+
 + Response 200
     + Attributes (Day)
 
 ### Update Day [PUT /days/{id}]
-+ Request
++ Request (application/json)
     + Headers
 
             Authorization: Bearer {access_token}
@@ -225,6 +234,10 @@ Manage day objects.
 + Response 200
 
 ### Delete Day [DELETE /days/{id}]
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer {access_token}
 + Response 204
             
 # Group Audio
@@ -403,15 +416,55 @@ Update translation for daily commentary.
 Manage the user access & groups
 
 ## User [/users]
+
 + Attributes (object)
     + id (number) - the user ID
     + email: example@example.com (string) - email address
     + languages (array)
-        
 
-### List Users [GET]
+### List Users [GET /users{?limit,page,orderBy,orderType,email}]
++ Request (application/json)
+    + Parameters
+        + limit: `10` (number, optional) - The number of results to return per page.
+            + Default: `10`
+        + page: `2` (number, optional) - The page of results to return.
+            + Default: `1`
+        + orderBy: `d.did` (string, optional) - The value to sort results.
+            + Default: `d.did`
+        + orderType: `ASC` (string, optional) - The value to sort order (Ascending or Descending).
+            + Default: `ASC`
+        + email: test@%.com (string, optional) - email to locate in SQL LIKE format
+    + Headers
+
+             Authorization: Bearer {access_token}
+
 + Response 200
+    + Attributes
+        + body (array)
+            + (User)
 
+### Get User [GET /users/{id}]
+    + Headers
+
+             Authorization: Bearer {access_token}
++ Response 200
+    + Attributes (User)
+
+### Update User [PUT /users/{id}]
++ Request (application/json)
+    + Headers
+
+             Authorization: Bearer {access_token}
++ Response 200
+    + Attributes (User)
+
+### Delete User [DELETE /users/{id}]
++ Request (application/json)
+    + Headers
+
+             Authorization: Bearer {access_token}
++ Response 204
+            
 # Group Languages
 
 Manage the Language codes on the system
