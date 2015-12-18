@@ -294,7 +294,7 @@ Manage the Audio stream and ACS components
     + Attributes (object)
         + body (array)
             + (Audio)
-        + Include Pager
+        + pager (Pager)
 
 
 ## Approve and Publish [/audio/{id}]
@@ -623,17 +623,17 @@ Manage email campaigns.
     + teaser - the short teaser text for each commentary.
     
 ## Commentary Translations (object)
-    + psalms_text (Translation)
-    + proverbs_text (Translation)
+    + psalms_text (Translation) - translation of a field
+    + proverbs_text (Translation) - translation of a field
 
 ## Translation (object)
-    + id (number) - translation ID
+    + id: 123 (number) - translation ID
     + locale: en (string) - language locale for which this is valid
     + field: psalms_text (string) - field for which this is a translation
     + content (string) - translated content
     + approved: true (boolean) - approved or not
     
 ## Pager (object)
-    + totalItems (number) - total number of items
-    + totalPages (number) - total number of pages
-    + currentPage (number) - current page number
+    + totalItems: 2 (number) - total number of items
+    + totalPages: 2 (number) - total number of pages
+    + currentPage: 1 (number) - current page number
