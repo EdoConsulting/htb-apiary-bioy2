@@ -111,9 +111,10 @@ Administer the Commentaries held on the Bible in One Year.
   
 + Response 200 (application/json)
 
-    + Attributes (array)
-        + (object)
-            + Include Commentary
+    + Attributes (object)
+        + body (array)
+            + (Commentary)
+        + pager (Pager)
 
 ### Create a commentary [POST]
 
@@ -144,9 +145,7 @@ Administer the Commentaries held on the Bible in One Year.
 
 + Response 200 (application/json)
 
-    + Attributes (array)
-        + (object)
-            + Include Commentary
+    + Attributes (Commentary)
 
 
 ### Update a Commentary [PUT /commentaries/{id}]
