@@ -455,6 +455,7 @@ Manage the user access & groups
             + (User)
 
 ### Get User [GET /users/{id}]
++ Request (application/json)
     + Headers
 
              Authorization: Bearer {access_token}
@@ -612,28 +613,36 @@ Manage email campaigns.
 
             Authorization: Bearer {access_token}
 + Response 204
-            
-# Data Structures
 
-## Commentary Teaser (object)
-    + cid - Internal system commentary ID.
-    + did - The day number.
-    + title - The title for the day.
-    + realday - The real day number.
-    + teaser - the short teaser text for each commentary.
-    
-## Commentary Translations (object)
+# Group Common Data
+Common data structures used in requests and responses are defined here. This section
+will be migrated to **Data Structures** when a bug relating to definition of types is fixed.
+## Pager [/fake1]
+Pagination data in lists
++ Attributes (object)
+    + totalItems: 2 (number) - total number of items
+    + totalPages: 2 (number) - total number of pages
+    + currentPage: 1 (number) - current page number
+
+## Commentary Teaser [/fake2]
+A shorter form of commentary
++ Attributes (object)
+        + cid: 123 - Internal system commentary ID.
+        + did: 152 - The day number.
+        + title: `Wow!` - The title for the day.
+        + realday: 152 - The real day number.
+        + teaser: `<p>Judah Smith is a delightful, young Pentecostal pastor from Seattle, Washington. He is one of the best communicators that I have ever heard – especially to young people. When listening to others, his favourite expression is ‘Wow!’ For him it is an expression of respect, awe and reverence.</p> <p>There are many blessings to living in Western Europe in the twenty-first century. However, we live in a society in which respect, reverence and awe do not seem to be as valued as they once were.</p> <p>Each of the passages for today reflects on what these words mean and why they are important.</p>` - the short teaser text for each commentary.
+
+## Commentary Translations [/fake3]
++ Attributes (object)
     + psalms_text (Translation) - translation of a field
     + proverbs_text (Translation) - translation of a field
 
-## Translation (object)
+## Translation [/fake4]
++ Attributes (object)
     + id: 123 (number) - translation ID
     + locale: en (string) - language locale for which this is valid
     + field: psalms_text (string) - field for which this is a translation
     + content (string) - translated content
     + approved: true (boolean) - approved or not
     
-## Pager (object)
-    + totalItems: 2 (number) - total number of items
-    + totalPages: 2 (number) - total number of pages
-    + currentPage: 1 (number) - current page number
