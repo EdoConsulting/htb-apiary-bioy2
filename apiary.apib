@@ -643,6 +643,34 @@ Review the status of commentaries in progress.
             + realday: `2016-03-01` - Scheduled day
             + workflow (Workflow)
 
+### Get my workflow [GET /review/myworkflow]
+
+Get commentaries in progress, filtered to those for the current user. 
+Note that because of a bug in the way the response is generated, the
+JSON encoding as as an object with numeric keys rather than as an array. This does not 
+matter for PHP clients as long as they decode the JSON using the default method.
+
++ Request 
+    + Headers
+
+            Authorization: Bearer {access_token}
+            
++ Response 200
+    + Attributes (array)
+        + (object)
+            + did: 60 (number) - Day id
+            + day_id: 60 (number) - Day id (deprecated)
+            + audio_id: 165 (number) - Audio ID
+            + `audio_path`: `https://dvo6z87ohhlk6.cloudfront.net/audio/Day60-v2095_24021431.mp3` - URL of audio file
+            + day_info: `Day 60 - Proverbs 6:12-19, Mark 10:32-52, Leviticus 5:14-7:10` - Day summary heading
+            + translations (object)
+                + *zh_hans*: 165 (number) - Translation ID
+            + cid: 2095 (number) - commentary ID
+            + title: `My Eyes Were Opened` - Commentary title
+            + document: `https://dvo6z87ohhlk6.cloudfront.net/documents/Day60-v2095_16021112.doc` - original commentary document
+            + realday: `2016-03-01` - Scheduled day
+            + workflow (Workflow)
+
 # Group Common Data
 Common data structures used in requests and responses are defined here. This section
 will be migrated to **Data Structures** when a bug relating to definition of types is fixed.
