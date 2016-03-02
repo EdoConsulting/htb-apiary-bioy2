@@ -85,6 +85,7 @@ Administer the Commentaries held on the Bible in One Year.
 + Attributes (object)
     + cid: 1234 (number) - Internal system commentary ID.
     + did: 152 (number) - The day number.
+    + day_id: 152 (number) - Originally leap-year adjusted day. Now same as did (deprecated).
     + title: Wow! - The title for the day.
     + introduction: `<p>Judah Smith is a delightful, young Pentecostal pastor from Seattle, Washington. He is one of the best communicators that I have ever heard – especially to young people. When listening to others, his favourite expression is ‘Wow!’ For him it is an expression of respect, awe and reverence.</p> <p>There are many blessings to living in Western Europe in the twenty-first century. However, we live in a society in which respect, reverence and awe do not seem to be as valued as they once were.</p> <p>Each of the passages for today reflects on what these words mean and why they are important.</p>` - Introduction block in HTML.
     + psalm_proverbs: `<h2>1. Respect</h2> <p>A culture of respect underlies the book of Proverbs. We see three examples in this passage:</p> <ul> <li>Respect for the Lord<br /> ‘An honest life shows <em>respect </em>for God’ (14:2, MSG). As we have seen, the word ‘fear’ (NIV) is probably best understood as ‘respect’. Respect for the Lord is the starting point for respect in all our other relationships.</li> <li>Respect for the wise<br /> ‘Whoever walks with the wise grows wise’ (13:20). ‘Wise speech evokes nothing but <em>respect</em>’ (14:3, MSG). Our society increasingly devalues the wisdom that comes with age. Wisdom often (though not always) comes through the experience of a long life. There is a huge amount of untapped wisdom in older people in our society.</li> <li>Respect in the home<br /> ‘A refusal to correct is a refusal to love; love your children by disciplining them’ (13:24, MSG). This teaching has sometimes been abused by an over-literal interpretation. What the book of Proverbs is encouraging is a culture of respect in the family – respect for parents and also respect for children, which involves loving discipline.</li> </ul> <p class="rteindent1">As St Paul writes, ‘Do not exasperate your children; instead, bring them up in the training and instruction of the Lord’ (Ephesians 6:4).</p> <blockquote> <p>Lord, help us to gain wisdom as we spend time with those who are wise. Help us as a church community to model good parenting, combining love and discipline. Help us to live lives of uprightness in respect for the Lord.</p> </blockquote>` - The commentary for Psalms or Proverbs in HTML format.
@@ -187,6 +188,7 @@ Administer the Commentaries held on the Bible in One Year.
 Manage day objects.
 + Attributes
   + did: 152 (number) - day ID
+  + day_id: 152 (number) - leap year adjusted day ID (deprecated).
   + psalm - Psalms verse numbers
   + proverbs: `Proverbs 13:20-14:4` - Proverbs verse numbers
   + new_testament: `John 20:10-31` - New Testament verse numbers
@@ -645,4 +647,3 @@ A shorter form of commentary
     + field: psalms_text (string) - field for which this is a translation
     + content (string) - translated content
     + approved: true (boolean) - approved or not
-    
