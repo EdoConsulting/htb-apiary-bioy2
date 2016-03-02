@@ -616,6 +616,33 @@ Manage email campaigns.
             Authorization: Bearer {access_token}
 + Response 204
 
+# Group Review
+Review the status of commentaries in progress.
+
+## Review
+
+### Get review list [GET /review]
++ Request 
+    + Headers
+
+            Authorization: Bearer {access_token}
+            
++ Response 200
+    + Attributes (array)
+        + (object)
+            + did: 60 (number) - Day id
+            + day_id: 60 (number) - Day id (deprecated)
+            + audio_id: 165 (number) - Audio ID
+            + `audio_path`: `https://dvo6z87ohhlk6.cloudfront.net/audio/Day60-v2095_24021431.mp3` - URL of audio file
+            + day_info: `Day 60 - Proverbs 6:12-19, Mark 10:32-52, Leviticus 5:14-7:10` - Day summary heading
+            + translations (object)
+                + *zh_hans*: 165 (number) - Translation ID
+            + cid: 2095 (number) - commentary ID
+            + title: `My Eyes Were Opened` - Commentary title
+            + document: `https://dvo6z87ohhlk6.cloudfront.net/documents/Day60-v2095_16021112.doc` - original commentary document
+            + realday: `2016-03-01` - Scheduled day
+            + workflow (Workflow)
+
 # Group Common Data
 Common data structures used in requests and responses are defined here. This section
 will be migrated to **Data Structures** when a bug relating to definition of types is fixed.
@@ -647,3 +674,75 @@ A shorter form of commentary
     + field: psalms_text (string) - field for which this is a translation
     + content (string) - translated content
     + approved: true (boolean) - approved or not
+    
+## Workflow [/fake5]
++ Attributes (object)
+    + commentary (object)
+        + progress: 100 (number) - percentage done
+        + steps: 13 (number) - number of steps
+        + previous (object)
+            + class: success - visual class
+            + info (Workflow Step Info)
+        + current (object)
+            + class: `success` - visual class
+            + info (Workflow Step Info)
+            + status: OK - status
+        + next (object)
+            + class: `success` - visual class
+            + info (Workflow Step Info)
+            + status: OK - status
+        + step (object)
+            + step: `1.17`
+            + status: completed - Status
+            + started: `11:59 16/02/2016` - When started
+            + updated: `11:59 16/02/2016` - When updated
+        + permitted: true - If this transition is permitted to the current user.
+        + duedate: `29/02/2016` - When due
+    + translation (object)
+        steps: 3 (number) - number of steps
+        + permitted: true - If this transition is permitted to the current user.
+        + data (object)
+            + *2.04* (object)
+                + info (Workflow Step Info)
+                + *zh_hans* (object)
+                    + step (object)
+                        + step: `2.04`
+                        + status: completed - Status
+                        + started: `01:02 19/02/2016` - When started
+                        + updated: `01:02 19/02/2016` - When updated
+                    + info (Workflow Step Info)
+                    + status: OK - Status
+                    + class: success - visual class
+                    + permitted: true - If this transition is permitted to the current user.
+                    + duedate: `29/02/2016` - When due
+        + progress: 100 (number) - percentage complete
+        + class: success - Success or failure
+      + audio (object)
+        + progress: 50 (number) - percentage complete
+        + steps: 4 (number) - Number of steps
+        + previous (object)
+            + class: success - visual class
+            + info (Workflow Step Info)
+        + current (object)
+            + class: `danger` - visual class
+            + info (Workflow Step Info)
+            + status: `CRITICAL` - Status
+        + next (object)
+            + class: success - visual class
+            + info (Workflow Step Info)
+            + status: OK - Status
+        + step (object)
+            + step: `3.03` - step identifier
+            + status: null
+            + started: `14:50 24/02/2016`
+            + updated: `14:50 24/02/2016`
+        + permitted: true - If this transition is permitted to the current user.
+        + duedate: `29/02/2016` - When due
+## Workflow Step Info [/fake6]
++ Attributes (object)
+    + duration_str: `1h 0m` - Duration string
+    + step: `1.16` - Step identifier
+    + title: `Update system with commentary details` - Step title
+    + description: `The VO admin will download the approved version and copy & paste the content into the fields on the commentary edit form. Change the status of the commentary for translations (so they now appear in the translation admin list) and notify translators that a commentary is available via email.  Starting WF2` - Description
+    + duration: 1 - duration in hours
+    + `role_name`: `ROLE_bioy_vo` - Role required for step
